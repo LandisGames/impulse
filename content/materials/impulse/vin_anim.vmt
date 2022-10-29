@@ -1,0 +1,13 @@
+"UnlitGeneric"
+{
+	"$basetexture" "impulse/vin_anim"
+	"Proxies" 
+    	{ 
+      		"AnimatedTexture" 
+       		{ 
+          			"animatedTextureVar" "$basetexture" 
+          			"animatedTextureFrameNumVar" "$frame" 
+          			"animatedTextureFrameRate" "10"
+       		}
+   	 }
+}
