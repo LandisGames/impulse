@@ -346,7 +346,7 @@ function impulse.SetupPlayer(ply, dbData)
 
 	ply.ammoToGive = give or {}
 
-	if not GExtension and (dbData.group and dbData.group != "user") then
+	if not GExtension and not VyHub and (dbData.group and dbData.group != "user") then
 		ply:SetUserGroup(dbData.group)
 	end
 

@@ -11,10 +11,14 @@ function impulse.Ops.AutoMod.Ban(ply, reason, risk, details)
         end
     end
 
+    local ban_reason = "AutoMod ban for suspected "..reason..". Appeal @ impulse-community.com for review."
+
     if GExtension then
-        GExtension:AddBan(ply:SteamID64(), 0, "AutoMod ban for suspected "..reason..". Appeal @ impulse-community.com for review.", "0", GExtension:CurrentTime(), function()
+        GExtension:AddBan(ply:SteamID64(), 0, ban_reason, "0", GExtension:CurrentTime(), function()
             GExtension:InitBans()
         end)
+    elseif VyHub then
+        VyHub.Ban:create(ply:SteamID64(), nil, ban_reason)
     end
 
     local embeds = {
