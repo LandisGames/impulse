@@ -20,6 +20,10 @@ function PLUGIN:PlayerDeath(victim, inflictor, attacker)
     end
 
     attacker.AutoModKillCooldown = CurTime()
+    
+    if attacker:IsNPC() then
+        return
+    end
 
     if (attacker:Team() == victim:Team()) or (victim:IsCP() and attacker:IsCP()) then
         attacker.AutoModRisk = (attacker.AutoModRisk or 0) + 4.5
