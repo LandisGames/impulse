@@ -71,6 +71,6 @@ hook.Add("iac.CheaterConvicted", "iacCheaterLog", function(steamid, code, caseIn
                             end
                         })
                     else
-                        opsDiscordLog(nil, embeds)
+                        opsDiscordLog(nil, embeds, impulse.YML.apis.discord_iac_webhook)
                     end
 end)
