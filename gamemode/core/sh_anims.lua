@@ -476,6 +476,41 @@ do
 
 		return false
 	end
+	
+	--- Enters an animation sequence on a player. Requires manual call of leaveSequence()
+	-- @realm server
+    -- @string sequence The sequence name
+	-- @internal
+	function meta:enterSequence(sequence)
+		hook.Run("OnPlayerEnterSequence", self, sequence)
+
+		if not sequence then
+			net.Start("impulseSeqSet")
+			net.WriteEntity(self)
+			net.WriteBool(true)
+			net.WriteUInt(0, 16)
+			net.Broadcast()
+			--return netstream.Start(nil, "seqSet", self)
+		end
+
+		local sequence = self:LookupSequence(sequence)
+
+		if sequence and sequence > 0 then
+
+			self.impulseSeqCallback = callback
+			self.impulseForceSeq = sequence
+
+			net.Start("impulseSeqSet")
+			net.WriteEntity(self)
+			net.WriteBool(false)
+			net.WriteUInt(sequence, 16)
+			net.Broadcast()
+
+			return time
+		end
+
+		return false
+	end
 
 	function meta:leaveSequence()
 		hook.Run("OnPlayerLeaveSequence", self)
