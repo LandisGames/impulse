@@ -14,6 +14,19 @@ if SERVER then
 
 		return self:SetSyncVar(SYNC_XP, amount, true)
 	end
+	
+	function meta:TakeXP(amount)
+		if not ( amount > 0 ) then
+			print("Input must be more than 0!")
+			return
+		end
+		
+		local setAmount = self:GetXP() - amount
+
+		self:SetXP(setAmount)
+
+		hook.Run("PlayerTakeXP", self, amount)
+	end
 
 	function meta:AddXP(amount)
 		local setAmount = self:GetXP() + amount
