@@ -17,7 +17,7 @@ local hitgroups = {
 hook.Add("HUDPaint", "impulseOpsHUD", function()
 	if not impulse.hudEnabled then return end
 
-	if LocalPlayer():IsAdmin() and LocalPlayer():GetMoveType() == MOVETYPE_NOCLIP then
+	if LocalPlayer():IsAdmin() and LocalPlayer():GetMoveType() == MOVETYPE_NOCLIP and not LocalPlayer():InVehicle() then
 		local onDuty = impulse.GetSetting("admin_onduty") or false
 
 		if onDuty then
