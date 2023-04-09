@@ -1174,7 +1174,7 @@ net.Receive("impulseMixTry", function(len, ply)
 			if ( amount > 1 ) then
 				ply:Notify("You have crafted a "..item.Name..".")
 			else
-				ply:Notify("You have crafted " .. amount .. " " .. item.Name .. "s .")
+				ply:Notify("You have crafted " .. amount .. " " .. item.Name .. "es .")
 			end
 
 			local xp = 28 + ((math.Clamp(mixClass.Level, 2, 9)  * 1.8) * 2) -- needs balancing
