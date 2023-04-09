@@ -172,7 +172,7 @@ function PANEL:SetPlayer(ply)
 		end)
 	end
 
-	hook.Add("PlayerMenuAddOptions", self, ply)
+	hook.Run("PlayerMenuAddOptions", self, ply)
 
 	if not self.hasAction then return self:Remove() end
 end
