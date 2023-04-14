@@ -209,6 +209,12 @@ function PANEL:OnMousePressed(keycode)
 				opt.Moving = 15
 				opt:SetIcon("icon16/arrow_right.png")
 			end
+			
+			if ( count >= 2 ) then -- Doing it again cus I want the option to be last
+                		opt2 = m:AddOption("Move All", moveItems)
+				opt2.Moving = count
+				opt2:SetIcon("icon16/arrow_right.png") 
+            		end
 
 			m:Open()
 
