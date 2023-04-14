@@ -1,6 +1,6 @@
 function PLUGIN:PlayerAuthed(ply, sid)
 	if impulse.YML.apis.steam_key then
-		return print("[ops] IsPlayingSharedGame is deprecated. apis.steam_key is not needed.")
+		print("[ops] IsPlayingSharedGame is deprecated. apis.steam_key is not needed.")
 	end
 	
 	local s64id = util.SteamIDTo64(sid)
