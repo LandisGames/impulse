@@ -50,7 +50,33 @@ function impulse.Ops.AutoMod.Ban(ply, reason, risk, details)
 		ply:Kick("Automatic punishment issued")
 	end
 
-    opsDiscordLog("<@&"..impulse.Config.DiscordLeadModRoleID..">", embeds)
+                    if reqwest then
+
+                        if embeds then
+                            embeds.timestamp = os.date("%Y-%m-%dT%H:%M:%S.000Z", os.time())
+                            embeds.footer = {}
+                            embeds.footer.text = "ops (GMT)"
+                        end
+
+                        reqwest({
+                            method = "POST",
+                            url = impulse.Config.ReqwestDiscordWebhookURL,
+                            timeout = 30,
+                            body = util.TableToJSON({ embeds = {embeds} }),
+                            type = "application/json",
+                            headers = { ["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.113 Safari/537.36" },
+                            success = function(status, body, headers)
+                                print("HTTP " .. status)
+                                PrintTable(headers)
+                                print(body)
+                            end,
+                            failed = function(err, errExt)
+                                print("Error: " .. err .. " (" .. errExt .. ")")
+                            end
+                        })
+                    else
+    			opsDiscordLog("<@&"..impulse.Config.DiscordLeadModRoleID..">", embeds)
+                    end
 end
 
 function meta:AutoModLogAdd(msg)
