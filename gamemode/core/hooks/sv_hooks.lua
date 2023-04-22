@@ -847,7 +847,7 @@ local function LoadButtons()
 		end
 	end
 
-	if not impulse.Config.Button then
+	if not impulse.Config.Buttons then
 		return
 	end
 	
