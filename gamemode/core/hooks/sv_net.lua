@@ -137,6 +137,8 @@ net.Receive("impulseCharacterCreate", function(len, ply)
 		insertQuery:Insert("firstjoin", timestamp)
 		insertQuery:Insert("data", "[]")
 		insertQuery:Insert("skills", "[]")
+		insertQuery:Insert("rpgroup", 0)
+        	insertQuery:Insert("rpgrouprank", "[]")
 		insertQuery:Callback(function(result, status, lastID)
 			if IsValid(ply) then
 				local setupData = {
@@ -151,7 +153,9 @@ net.Receive("impulseCharacterCreate", function(len, ply)
 					data = "[]",
 					skills = "[]",
 					skin = charSkin,
-					firstjoin = timestamp
+					firstjoin = timestamp,
+					rpgroup = 0,
+                   			rpgrouprank = "[]"
 				}
 
 				print("[impulse] "..plyID.." has been submitted to the database. RP Name: ".. charName)
